@@ -13,7 +13,7 @@ Il y a quatre composants principaux au projet :
 ## Liste des applications
 
 
-![image](https://user-images.githubusercontent.com/11191435/128320074-1c01ef91-1291-42c3-8009-d7800fec0b07.png)
+![image](https://user-images.githubusercontent.com/11191435/128323537-def749ce-c256-4193-bcba-91a6b8cfea65.png)
 
 #### Liste des tâches référencées sur le schéma ci-dessus
 
