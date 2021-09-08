@@ -1,35 +1,64 @@
-# Envinorma : faciliter le contrôle environnemental des sites industriels
+---
+layout: page
+title: Accueil
+nav_order: 1
+---
 
-Envinorma cherche à faciliter la préparation des inspections en simplifiant l'accès à la réglementation applicable aux industries en France (les [ICPE](https://fr.wikipedia.org/wiki/Installation_class%C3%A9e_pour_la_protection_de_l'environnement)).
+# Envinorma - documentation technique
 
-Ce projet est réalisé dans le cadre du programme EIG, une page d'introduction est accessibile [ici](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2020/envinorma.html).
+Cette page rassemble la documentation technique et les archives du projet Envinorma. Une page d'introduction au projet est consultable [ici](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2020/envinorma.html).
 
-[Regarder une vidéo d'introduction](https://www.loom.com/share/41d0e1bc23bb489495a58b323fae0348)
+# Applications
 
+## envinorma.herokuapp.com
 
-# Plateformes
+Le code source est accessible [ici](https://github.com/Envinorma/envinorma-web) et les instructions pour lancer l'application en local et la déployer sur Heroku sont consultables [ici](<(https://github.com/Envinorma/envinorma-web/README.md)>).
 
-Architecture des services décrite [ici](/schema_fonctionnel.md).
+## envinorma-back-office.herokuapp.com
 
-## Envinorma
-Une application web qui automatise la compilation de la réglementation locale et nationale des sites industriels et permet de préparer des fiches d'inspection en quelques clics.
+Le back-office permet de manipuler les textes réglementaires. Les instructions de lancement sont consultables [ici](https://github.com/Envinorma/back-office#ex%C3%A9cuter-en-local) et les instructions de déploiement sont consultables [ici](https://github.com/Envinorma/back-office#d%C3%A9ploiement).
 
-[Découvrir l'application](https://envinorma.herokuapp.com)
+# Mise à jour des données
 
-## Envinorma - Back office
-Une interface de travail interne permettant de manipuler et enrichir la réglementation applicable pour être ensuite utilisée par l'application Envinorma.
+Les données dont dépend Envinorma sont décrites [ici](https://github.com/Envinorma/exploration/blob/main/data_sources.md).
 
-[Découvrir la réglementation](https://envinorma-back-office.herokuapp.com)
+1. [Mettre les installations et les classements à jour à partir de S3IC](/data_updates/update_classements.md)
+2. [Mettre les APs à jour à partir des données géorisques](/data_updates/update_aps.md)
+3. [Mettre la nomenclature à partir des données géorisques](/data_updates/update_nomenclature.md)
+4. [Mettre à jour les AM envinorma après une modification sur le back-office](/data_updates/update_ams.md)
+5. [Comment mettre à jour un AM (métier)](/data_updates/edit_am.md)
 
-# Dépôts Github
+# Architecture
 
-- [Code source de la plateforme](https://github.com/Envinorma/envinorma-web)
-- [Librairie de manipulation des textes réglementaires](https://github.com/Envinorma/envinorma-data)
-- [Code source de la plateforma back-office](https://github.com/Envinorma/back-office)
-- [Tâches de préparation de la donnée](https://github.com/Envinorma/data-tasks)
+- Architecture des services décrite [ici](/architecture/schema_fonctionnel.md).
+- Architecture de envinorma-web
+- Architecture de envinorma-data
+- Architecture de data-tasks
+- Architecture de back-office
 - [Librairie de manipulation de l'API Legifrance](https://github.com/Envinorma/leginorma)
 
-# Projets Github
+# Reco/futur (la dernière semaine)
+
+- Connexion GUN
+- Maintenance
+- Prospectives
+- Fonctionnalités
+
+# Archives
 
 - [Tableau des retours utilisateurs](https://github.com/orgs/Envinorma/projects/2?fullscreen=true)
 - [Tableau de suivi des tâches](https://github.com/orgs/Envinorma/projects/1?fullscreen=true)
+- Le support de Laure
+- La vidéo pitch
+- La vidéo de cloture
+- Le MIRO
+- Le FIGMA
+
+# Outils divers
+
+- google analytics
+- Heroku prod
+- Heroku staging
+- sentry
+- Hotjar
+- Resana ?
