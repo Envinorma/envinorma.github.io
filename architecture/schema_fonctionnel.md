@@ -1,7 +1,9 @@
 ---
-layout: page
-title: Schéma fonctionnel
+layout: default
+title: Architecture des services
 permalink: /architecture/schema_fonctionnel
+parent: Architecture
+nav_order: 1
 ---
 
 # Architecture technique du projet Envinorma
