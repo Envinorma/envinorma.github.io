@@ -30,11 +30,11 @@ Les données dont dépend Envinorma sont décrites [ici](https://github.com/Envi
 
 # Architecture
 
-- Architecture des services décrite [ici](/architecture/schema_fonctionnel.md).
+- [Architecture des services](/architecture/schema_fonctionnel.md).
 - Architecture de envinorma-web
-- Architecture de envinorma-data
-- Architecture de data-tasks
-- Architecture de back-office
+- [Architecture de envinorma-data](https://envinorma.github.io/envinorma-data/#modules-principaux)
+- [Architecture de data-tasks](https://github.com/Envinorma/data-tasks#data-tasks)
+- [Architecture du dépôt back-office](https://github.com/Envinorma/back-office#structure)
 - [Librairie de manipulation de l'API Legifrance](https://github.com/Envinorma/leginorma)
 
 # Reco/futur (la dernière semaine)

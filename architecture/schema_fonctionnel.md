@@ -4,10 +4,7 @@ title: Schéma fonctionnel
 permalink: /architecture/schema_fonctionnel
 ---
 
-# Envinorma
-
-L'application Envinorma vise à simplifier le travail de compilation de la réglementation et de préparation d'inspection dans le cadre de l'inspection des installations classées.
-Les installations classées pour la protection de l'environnement (ICPE) sont réglementées par des arrêtés ministériels (AM) et des arrêtés préfectoraux (AP).
+# Architecture technique du projet Envinorma
 
 Il y a quatre composants principaux au projet :
 
@@ -26,10 +23,11 @@ Il y a quatre composants principaux au projet :
 2.  Détection des nouvelles versions d’AM publiées à partir de l’API Legifrance et du site aida.ineris.fr. Notification slack. _(10 min d’exécution, 1 fois par semaine)_
 3.  OCR des nouveaux AP à partir de la bdd Envinorma et des AP déjà uploadés dans le bucket _(3h d’exécution, 1 fois par semaine)_
 4.  Reconstruction des AM de la base de données Envinorma à partir de la base de données Back-office _(5 min d’exécution, 1 fois par semaine ou à la demande)_
-5.  Construction du fichier des AM enrichis à partir de la base de données back-office (upload dans un bucket OVH) _(5 min d'exécution, 1 fois par semaine)_
+5.  Construction du fichier des AM à partir de la base de données back-office (upload dans un bucket OVH) _(5 min d'exécution, 1 fois par semaine)_
 
 ### App envinorma
 
+- Actuellement déployée sur Heroku, version payante pour la base de donnée et la dyno
 - Postgres v12.7, 400k lignes, 10 tables, 125 Mo de données, backup hebdomadaire
 - App : ruby 2.7.4, rails 6.0.4.
   - Toutes les dépendances ruby : https://github.com/Envinorma/envinorma-web/blob/master/Gemfile
@@ -42,10 +40,12 @@ Il y a quatre composants principaux au projet :
 
 ### App envinorma-staging (environnement de pre-prod)
 
-- Même qu’Envinorma, avec une base de données plus petite
+- Actuellement déployée sur Heroku, version gratuite
+- Mêmes caractéristiques qu'Envinorma, avec une base de données plus petite
 
 ### App back-office
 
+- Actuellement déployée sur Heroku, version gratuite
 - Postgres v12.7, 2000 lignes, 5 tables, 33Mo de données, backup hebdomadaire
 - App : python 3.9, dash 1.21.0
   - Liste des dépendances : [https://github.com/Envinorma/back-office/blob/main/requirements.txt](https://github.com/Envinorma/back-office/blob/main/requirements.txt)
