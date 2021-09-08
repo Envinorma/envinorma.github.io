@@ -16,7 +16,7 @@ Le code source est accessible [ici](https://github.com/Envinorma/envinorma-web) 
 
 ## envinorma-back-office.herokuapp.com
 
-Le back-office permet de manipuler les textes réglementaires. Les instructions de lancement sont consultables [ici](https://github.com/Envinorma/back-office#ex%C3%A9cuter-en-local) et les instructions de déploiement sont consultables [ici](https://github.com/Envinorma/back-office#d%C3%A9ploiement).
+Le back-office permet de manipuler les textes réglementaires. Les instructions de lancement sont consultables [ici](https://github.com/Envinorma/back-office#ex%C3%A9cuter-en-local) et les instructions de déploiement sont consultables [ici](https://github.com/Envinorma/back-office#7-d%C3%A9ployer-sur-heroku).
 
 # Mise à jour des données
 
@@ -24,7 +24,7 @@ Les données dont dépend Envinorma sont décrites [ici](https://github.com/Envi
 
 1. [Mettre les installations et les classements à jour à partir de S3IC](/data_updates/update_classements.md)
 2. [Mettre les APs à jour à partir des données géorisques](/data_updates/update_aps.md)
-3. [Mettre la nomenclature à partir des données géorisques](/data_updates/update_nomenclature.md)
+3. [Mettre la nomenclature à jour à partir des données géorisques](/data_updates/update_nomenclature.md)
 4. [Mettre à jour les AM envinorma après une modification sur le back-office](/data_updates/update_ams.md)
 5. [Comment mettre à jour un AM (métier)](/data_updates/edit_am.md)
 
