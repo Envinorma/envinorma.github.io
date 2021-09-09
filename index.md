@@ -60,7 +60,6 @@ Les données dont dépend Envinorma sont décrites [ici](https://github.com/Envi
 - [Heroku prod](https://dashboard.heroku.com/apps/envinorma)
 - [Heroku staging](https://dashboard.heroku.com/apps/envinorma-staging-1)
 - [Heroku back-office](https://dashboard.heroku.com/apps/envinorma-back-office)
-- Heroku staging
 - Sentry via Heroku
 - Hotjar
 - [Slack](https://envinorma.slack.com)

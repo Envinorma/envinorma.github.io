@@ -10,11 +10,11 @@ nav_order: 2
 
 ## 1. Générer aps_all.csv
 
-Pour cela, utiliser la librairie data-tasks et suivre ces [instuctions](https://github.com/Envinorma/data-tasks#mettre-%C3%A0-jour-les-fichiers-apscsv-%C3%A0-partir-de-lextraction-g%C3%A9orisques) pour générer le fichier `aps_all.csv` dans `envinorma-web/db/seeds`.
+Pour cela, utiliser la librairie data-tasks et suivre ces [instructions](https://github.com/Envinorma/data-tasks#mettre-%C3%A0-jour-les-fichiers-apscsv-%C3%A0-partir-de-lextraction-g%C3%A9orisques) pour générer le fichier `aps_all.csv` dans `envinorma-web/db/seeds`.
 
 ## 2. Exécuter l'OCR sur les nouveaux APs
 
-Pour cela, utiliser la même librairie et suivre ces [instuctions](https://github.com/Envinorma/data-tasks#faire-tourner-locr-sur-les-aps-dont-locr-na-pas-%C3%A9t%C3%A9-ex%C3%A9cut%C3%A9).
+Pour cela, utiliser la même librairie et suivre ces [instructions](https://github.com/Envinorma/data-tasks#faire-tourner-locr-sur-les-aps-dont-locr-na-pas-%C3%A9t%C3%A9-ex%C3%A9cut%C3%A9).
 
 ## 3. Générer à nouveau aps_all.csv
 
