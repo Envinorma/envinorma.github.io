@@ -52,15 +52,16 @@ Les données dont dépend Envinorma sont décrites [ici](https://github.com/Envi
 - [Vidéo dans le cadre de la fin du programme EIG](https://www.youtube.com/watch?v=JMa3h5d-X0A&t=1s)
 - [Vidéo d'introduction de l'outil](https://www.loom.com/share/41d0e1bc23bb489495a58b323fae0348?t=0)
 - Le MIRO
-- Le FIGMA
+- [Interfaces du site (fichier Figma)](https://www.figma.com/file/F1yza21GVD8lkw7jz3ipDT/Envinorma?node-id=0%3A1)
 
 # Outils divers
 
-- google analytics
+- google analytics (accessible uniquement avec une adresse Google)
 - [Heroku prod](https://dashboard.heroku.com/apps/envinorma)
 - [Heroku staging](https://dashboard.heroku.com/apps/envinorma-staging-1)
 - [Heroku back-office](https://dashboard.heroku.com/apps/envinorma-back-office)
 - Sentry via Heroku
-- Hotjar
+- [Hotjar](https://www.hotjar.com/)
 - [Slack](https://envinorma.slack.com)
 - [Resana](https://resana.numerique.gouv.fr/public/perimetre/consulter/16981) (accès via un animateur du projet)
+- [Figma - pour le design d'interface](https://www.figma.com/file/F1yza21GVD8lkw7jz3ipDT/)
