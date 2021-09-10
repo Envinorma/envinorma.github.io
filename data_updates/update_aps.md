@@ -8,6 +8,8 @@ nav_order: 2
 
 # Mise à jour des arrêtés préfectoraux à partir de l'extraction Géorisques
 
+_Pour exécuter les scripts, les identifiants OVH et Heroku sont nécessaires. Ils peuvent être récupérés via Resana sur demande à un responsable du projet._
+
 ## 1. Générer aps_all.csv
 
 Pour cela, utiliser la librairie data-tasks et suivre ces [instructions](https://github.com/Envinorma/data-tasks#mettre-%C3%A0-jour-les-fichiers-apscsv-%C3%A0-partir-de-lextraction-g%C3%A9orisques) pour générer le fichier `aps_all.csv` dans `envinorma-web/db/seeds`.
