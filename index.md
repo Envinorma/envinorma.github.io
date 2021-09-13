@@ -12,7 +12,7 @@ Cette page rassemble la documentation technique et les archives du projet Envino
 
 ## envinorma.herokuapp.com
 
-Le code source est accessible [ici](https://github.com/Envinorma/envinorma-web) et les instructions pour lancer l'application en local et la déployer sur Heroku sont consultables [ici](<(https://github.com/Envinorma/envinorma-web/README.md)>).
+Le code source est accessible [ici](https://github.com/Envinorma/envinorma-web) et les instructions pour lancer l'application en local et la déployer sur Heroku sont consultables [ici](https://github.com/Envinorma/envinorma-web/#envinorma).
 
 ## envinorma-back-office.herokuapp.com
 
