@@ -12,6 +12,8 @@ Les classements sont mis à jour à partir des extractions S3IC. Il faut éxécu
 
 ## Prérequis :
 
+_Pour exécuter les scripts, les identifiants OVH et Heroku sont nécessaires. Ils peuvent être récupérés via Resana sur demande à un responsable du projet._
+
 1. avoir les deux fichiers issus de l'extraction DGPR: `s3ic-liste-etablissements.csv` et `sic-liste-rubriques.csv` dans un dossier en local
 
 2. avoir le dépôt [Envinorma-web](https://github.com/Envinorma/envinorma-web) en local
