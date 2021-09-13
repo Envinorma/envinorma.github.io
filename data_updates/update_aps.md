@@ -103,7 +103,7 @@ docker run -it --rm\
 
 ## Générer les fichiers CSV
 Après l'étape d'OCRisation, les 3 fichiers `aps_*.csv` ont besoin d'être mis à jour car le poids et le statut de l'OCR (ex: success) ont changé.
-On va donc rejouer le script pour regénérer les 3 fichiers : `aps_all.csv`, `aps_idf.csv`, `aps_sample.csv` que l'on va cette fois-ci utilisé pour seeder envinorma-web.
+On va donc rejouer le script pour regénérer les 3 fichiers : `aps_all.csv`, `aps_idf.csv`, `aps_sample.csv` que l'on va cette fois-ci utiliser pour seeder envinorma-web.
 
 
 ## Mettre en ligne
