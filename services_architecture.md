@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Architecture des services
-permalink: /architecture/schema_fonctionnel
-parent: Architecture
-nav_order: 1
+permalink: /architecture
+nav_order: 3
 ---
 
 # Architecture technique du projet Envinorma
