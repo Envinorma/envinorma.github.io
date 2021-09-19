@@ -72,6 +72,10 @@ Tous les paramètres peuvent être modifiés ou supprimer en cliquant sur les bo
 
 Lorsque la condition est assez évidente et précisée dans le paragraphe concernée, il est inutile de la renseigner. Il est intéressant de renseigner une modification/non-application si son absence entraverait la lecture ou pourrait être source d'erreur.
 
+### ⚠️ Veillez aux incompatibilités
+
+Lorsque plusieurs paramètres sont attachés à la même section, il faut veiller à ce que les conditions ne puissent pas être satisfaites simultanément. En effet, dans le cas où une condition d'inapplicabilité et une condition de modification sont satisfaites simultanément par exemple, il y a ambiguïté sur l'élément à prendre en compte. Il est toutefois possible de définir plusieurs conditions pour une même section lorsque celles-ci sont incompatibles.
+
 ### ℹ Pourquoi `condition de non-application` plutôt que `condition d'application` ?
 
 C'est principalement à cause des AM très complexes, comme le 1510. En effet, dans les annexes, il est indiqué que tel paragraphe ne s'applique pas pour les installations à enregistrement et mises en service avant telle date. Cette prescription est également référencée dans les autres annexes avec d'autres conditions d'application. Il est donc difficile de reconstituer la liste des cas d'application (il faudrait aller d'annexe en annexe pour chaque paragraphe) et il est plus facile d'ajouter un cas de non application à chaque fois (la liste des conditions d'application finales est donc constituée automatiquement).
