@@ -38,7 +38,7 @@ Selon l'action souhaitée, suivre les indications des paragraphes suivants.
 ## Déclarer une section non applicable
 
 - Cliquer sur le bouton `Nouvelle inapplicabilité` ou copier une inapplicabilité existante (affichée sous le titre `Paramètres`)
-- **Paragraphe visé** : Choisir le titre du paragraphe visé par la condition et cocher les alinéas inapplicables
+- **Paragraphe visé** : Choisir le titre du paragraphe visé par la condition et cocher les alinéas inapplicables. Cocher `Rendre inapplicable les sous-sections ?` si les sous-sections du paragraphe visés doivent également être rendues inapplicables.
 
 > NB : il est possible de viser plusieurs sections en cliquant sur `Ajouter un paragraphe`
 
