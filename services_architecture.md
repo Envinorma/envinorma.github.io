@@ -2,7 +2,7 @@
 layout: default
 title: Architecture des services
 permalink: /architecture
-nav_order: 3
+nav_order: 2
 ---
 
 # Architecture technique du projet Envinorma
@@ -28,7 +28,7 @@ Il y a quatre composants principaux au projet :
 
 ### App envinorma
 
-- Actuellement déployée sur Heroku, version payante pour la base de donnée et la dyno
+- Actuellement déployée sur Heroku, version payante pour la base de données et la dyno
 - Postgres v12.7, 400k lignes, 10 tables, 125 Mo de données, backup hebdomadaire
 - App : ruby 2.7.4, rails 6.0.4.
   - Toutes les dépendances ruby : https://github.com/Envinorma/envinorma-web/blob/master/Gemfile

@@ -113,7 +113,7 @@ On va donc rejouer le script pour regénérer les 3 fichiers : `aps_all.csv`, `a
 cd ../envinorma-web
 ```
 
-### Commiter et pusher
+### Commiter et mettre en production
 Le script précédent a ajouté 3 nouveaux CSV dans le dossier `db/seeds` d'envinorma-web.
 Il faut maintenant les ajouter au repo distant sur Heroku.
 
