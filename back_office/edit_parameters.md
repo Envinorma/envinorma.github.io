@@ -17,8 +17,8 @@ Plusieurs cas de figure :
 
 À noter : l'inapplicablitié et l'avertissement peuvent concerner l'AM en entier
 
-> _ex: un AM peut être inapplicable lorsque la date de mise en service de l'installation est antérieure à une certaine date._\
-> _ex: on peut vouloir signaler qu'un AM n'est pas applicable si l'exploitant n'en a pas fait la demande._
+- _ex: un AM peut être inapplicable lorsque la date de mise en service de l'installation est antérieure à une certaine date._
+- _ex: on peut vouloir signaler qu'un AM n'est pas applicable si l'exploitant n'en a pas fait la demande._
 
 ## Recommandations pour le paramétrage
 
