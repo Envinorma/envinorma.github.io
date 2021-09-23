@@ -8,18 +8,26 @@ nav_order: 3
 
 # Mise à jour des arrêtés ministériels dans l'application Envinorma
 
-Les AM sont édités via le back-office et doivent ensuite être exportés dans la base de donnée de l'application Envinorma. Ce document décrit la marche à suivre.
+Les AM sont édités via le [back-office](https://envinorma-back-office.herokuapp.com/) et doivent ensuite être exportés sur OVH puis importés dans la base de données de l'application Envinorma.
 
-### 1. Générer le fichier zip contenant les AM de la base de donnée du back office
+### Export des AMs depuis le back-office
 
-- Se rendre sur [cette page](https://envinorma-back-office.herokuapp.com/upload_ams) du back-office.
-- Cliquer sur le bouton `Exporter`. L'opération peut prendre jusqu'à deux minutes. Si tout se passe bien, une alerte verte s'affiche indiquant le nom du fichier créé dans le [dépôt OVH contenant les AM](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/am).
+Cliquer sur le bouton `Exporter les AMs` depuis la page d'accueil du [back-office](https://envinorma-back-office.herokuapp.com).
 
-Le fichier ainsi créé est un zip contenant autant de fichiers qu'il y a d'AM en vigueur dans la base de donnée du back-office. Chaque nom de fichier est de la forme `CID.json`, où CID est l'identifiant Légifrance du texte.
+L'opération peut prendre jusqu'à deux minutes. Si tout se passe bien, une alerte verte s'affiche indiquant le nom du fichier créé dans le [dépôt OVH contenant les AM](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/am). Cette opération écrase également le fichier `ams/latest.zip` dans ce dépôt OVH.
 
-### 2. Mettre à jour les AM dans Envinorma
+Le fichier ainsi créé est un zip contenant autant de fichiers qu'il y a d'AM en vigueur dans la base de données du back-office. Chaque nom de fichier est de la forme `CID.json`, où CID est l'identifiant Légifrance du texte.
 
-- Télécharger le zip ainsi créé, le dézipper et copier les fichiers AM dans le dossier `db/seeds/ams` du dépôt `envinorma-web`
-- Ajouter une tâche after party `bundle exec rails generate after_party:task seed_ams`
-- Dans le fichier créé, ajouter `DataManager.seed_ams` après le commentaire `# Put your task implementation HERE.`
-- Commit, push, deploy
+### Import des AMs et mise à jour dans Envinorma
+
+Exécuter la commande suivante Dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku) :
+
+```ruby
+DataManager.seed_ams(from_ovh: true)
+```
+
+> NB : cette commande télécharge le fichier `ams/latest.zip`, le décompresse dans `db/seeds/ams`, valide les nouveaux AM et met à jour la base.
+
+> NB : il est possible de commiter les fichiers AMs ainsi crées pour permettre la tracabilité des modifications.
+
+Et voilà 🎉
