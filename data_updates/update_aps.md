@@ -49,7 +49,7 @@ cd data-tasks
 ```
 
 Remplacer `$INPUT_FOLDER` par le chemin vers le dossier contenant les deux fichiers issus de l'extraction Géorisques et `$OUTPUT_FOLDER` par le chemin vers le dossier des seeds dans le dossier envinorma-web où vont être générés les 3 nouveaux fichiers.
-/!\ le dossier d'output doit contenir les fichiers `installations_all.csv`, `installations_idf.csv`, `installations_sample.csv`.
+⚠️ le dossier d'output doit contenir les fichiers `installations_all.csv`, `installations_idf.csv`, `installations_sample.csv`.
 
 > ex : `$INPUT_FOLDER` -> `/Users/lisadurand/Downloads/s3ic/S3IC-Georisques`\
 > ex : `$OUTPUT_FOLDER` -> `/Users/lisadurand/code/envinorma-web/db/seeds`
