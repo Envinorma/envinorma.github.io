@@ -20,7 +20,9 @@ Le fichier ainsi créé est un zip contenant autant de fichiers qu'il y a d'AM e
 
 ### Import des AMs et mise à jour dans Envinorma
 
-Exécuter la commande suivante Dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku) :
+> ⚠️ Cette opération pouvant perturber les utilisateurs, il est préférable de l'exécuter à une heure de faible fréquentation (le midi ou le soir par exemple).
+
+Exécuter la commande suivante Dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku comme expliqué ci-dessous.) :
 
 ```ruby
 DataManager.seed_ams(from_ovh: true)
