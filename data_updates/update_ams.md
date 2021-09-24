@@ -26,8 +26,10 @@ Exécuter la commande suivante Dans la console Rails de production (soit depuis 
 DataManager.seed_ams(from_ovh: true)
 ```
 
-> NB : cette commande télécharge le fichier `ams/latest.zip`, le décompresse dans `db/seeds/ams`, valide les nouveaux AM et met à jour la base.
+**NB**
 
-> NB : il est possible de commiter les fichiers AMs ainsi crées pour permettre la tracabilité des modifications.
+- Pour ouvrir la console depuis Heroku, ouvrir l'application depuis le dashboard Heroku puis cliquer sur `More`, `Run console`, écrire `console` dans la popup qui s'ouvre, puis cliquer sur `Run`
+- Cette commande télécharge le fichier `ams/latest.zip`, le décompresse dans `db/seeds/ams`, valide les nouveaux AM et met à jour la base.
+- Il est possible de commiter les fichiers AMs ainsi crées pour permettre la tracabilité des modifications.
 
 Et voilà 🎉
