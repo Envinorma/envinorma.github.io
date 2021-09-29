@@ -8,136 +8,49 @@ nav_order: 2
 
 # Mise à jour des arrêtés préfectoraux
 
-Les APs sont mis à jour à partir des extractions Géorisques.
-La liste des AP est mise à jour et seedée dans envinorma-web. Les AP sont OCRisés et stockés sur OVH.
+Les APs sont mis à jour quotidiennement à partir des extractions Géorisques. Un script python exécute l'OCR sur les APs et une tâche rake met à jour les APs de l'application de production.
 
 ## Prérequis
 
-_Pour exécuter les scripts, les identifiants OVH et Heroku sont nécessaires. Ils peuvent être récupérés via Resana sur demande à un responsable du projet._
+_Pour exécuter les scripts, les identifiants OVH, slack et Heroku sont nécessaires. Ils peuvent être récupérés via Resana sur demande à un responsable du projet._
 
-1. avoir les deux fichiers issus de l'extraction Géorisques: `IC_documents.csv` et `IC_types_document.csv` dans un dossier en local
+## Mise à jour de la liste des APs et OCR des APs
 
-2. avoir le dépôt [Envinorma-web](https://github.com/Envinorma/envinorma-web) en local
+Un script python est exécuté quotidiennement via une tâche CRON de l'utilisateur `root` de la machine OVH `data-tasks`. Il télécharge le dump géorisques du matin, génère les fichiers `aps_all.csv`, `aps_idf.csv` et `aps_sample.csv` dans le [bucket OVH](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc) associé, exécute l'OCR sur les nouveaux APs. Enfin, il met à jour le statut OCR des APs dans les fichiers `aps_all.csv`, `aps_idf.csv` et `aps_sample.csv`.
 
-```sh
-git clone git@github.com:Envinorma/envinorma-web.git
-```
+Ce script est contenu dans le fichier `scripts/update_ap.sh` du dépôt [data-tasks](https://github.com/Envinorma/data-tasks). Pour l'exécuter dans un nouvel environnement :
 
-1. avoir le dépôt [Data-tasks](https://github.com/Envinorma/data-tasks) en local
+1. Cloner le dépôt [data-tasks](https://github.com/Envinorma/data-tasks) en local
 
-```sh
-git clone https://github.com/Envinorma/data-tasks
-```
+   ```sh
+   git clone https://github.com/Envinorma/data-tasks
+   ```
 
-1. avoir mis à jour les [installations](http://localhost:4000/data/classements)
-1. avoir installé [docker](https://docs.docker.com/get-docker/)
+2. Avoir installé [docker](https://docs.docker.com/get-docker/)
+3. Construire l'image docker
 
-## MAJ de la liste des AP à OCRiser
+   ```sh
+   cd data-tasks
+   docker build -t tasks .
+   ```
 
-Le script va créer de nouveaux CSV (`aps_all.csv`, `aps_idf.csv`, `aps_sample.csv`) à partir des deux CSV extraits de Géorisques `IC_documents.csv` et `IC_types_document.csv`.
+4. Exécuter le script (après avoir remplacé les 6 occurrences de `REPLACE_ME` par la valeur du secret associé.)
+   ```sh
+   docker run -it --rm\
+     -e OVH_OS_TENANT_ID=REPLACE_ME\
+     -e OVH_OS_TENANT_NAME=REPLACE_ME\
+     -e OVH_OS_USERNAME=REPLACE_ME\
+     -e OVH_OS_PASSWORD=REPLACE_ME\
+     -e SLACK_AM_CHANNEL=REPLACE_ME\
+     -e GEORISQUES_DATA_URL=REPLACE_ME\
+     tasks\
+     sh scripts/update_aps.sh
+   ```
 
-> _Pour l'instant on ne va pas utiliser ces fichiers._
+## Mise à jour des APs dans l'application de production
 
-Le script uploade également une liste à jour avec les ID des APs sur OVH.
-
-### Éxécuter le script
-
-Se placer dans le dossier data-tasks
-
-```sh
-cd data-tasks
-```
-
-Remplacer `$INPUT_FOLDER` par le chemin vers le dossier contenant les deux fichiers issus de l'extraction Géorisques et `$OUTPUT_FOLDER` par le chemin vers le dossier des seeds dans le dossier envinorma-web où vont être générés les 3 nouveaux fichiers.
-⚠️ le dossier d'output doit contenir les fichiers `installations_all.csv`, `installations_idf.csv`, `installations_sample.csv`.
-
-> ex : `$INPUT_FOLDER` -> `/Users/lisadurand/Downloads/s3ic/S3IC-Georisques`\
-> ex : `$OUTPUT_FOLDER` -> `/Users/lisadurand/code/envinorma-web/db/seeds`
-
-Remplacer les 4 occurrences de `REPLACE_ME` par les identifiants OVH
-
-#### Avec Docker
-
-```sh
-docker build -t tasks .
-docker run -it --rm\
-  -v $INPUT_FOLDER:/data/georisques\
-  -v $OUTPUT_FOLDER:/data/seeds\
-  -e OVH_OS_TENANT_ID=REPLACE_ME\
-  -e OVH_OS_TENANT_NAME=REPLACE_ME\
-  -e OVH_OS_USERNAME=REPLACE_ME\
-  -e OVH_OS_PASSWORD=REPLACE_ME\
-  tasks\
-  python3 -m tasks.data_build.generate_data --handle-aps
-```
-
-#### Avec python >= 3.8
-
-```sh
-cp default_config.ini config.ini
-# Modifier config.ini pour définir storage.seed_folder=$OUTPUT_FOLDER et storage.georisques_data_folder=$INPUT_FOLDER
-# Modifier aussi les valeurs de OS_TENANT_ID, OS_TENANT_NAME, OS_USERNAME, OS_PASSWORD avec les identifiants OVH
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python3 -m tasks.data_build.generate_data --handle-aps
-```
-
-## Exécuter l'OCR sur les nouveaux APs et les uploader sur OVH
-
-À partir de la liste des ID uploadée dans le script précédent sur OVH, le script va appliquer l’OCR à tous les APs n’ayant pas déjà été OCRisés, puis les uploader sur OVH.
-
-Remplacer les 4 occurrences de `REPLACE_ME` par les identifiants OVH
-
-#### Avec Docker
-
-```sh
-docker build -t ocr -f ocr.dockerfile .
-docker run -it --rm\
-  -e OS_AUTH_URL="https://auth.cloud.ovh.net/v3/"\
-  -e OS_IDENTITY_API_VERSION=3\
-  -e OS_USER_DOMAIN_NAME=Default\
-  -e OS_PROJECT_DOMAIN_NAME=Default\
-  -e OS_TENANT_ID=REPLACE_ME\
-  -e OS_TENANT_NAME=REPLACE_ME\
-  -e OS_USERNAME=REPLACE_ME\
-  -e OS_PASSWORD=REPLACE_ME\
-  -e OS_REGION_NAME=SBG\
-  ocr
-```
-
-## Générer les fichiers CSV
-
-Après l'étape d'OCRisation, les 3 fichiers `aps_*.csv` ont besoin d'être mis à jour car le poids et le statut de l'OCR (ex: success) ont changé.
-On va donc rejouer le script pour regénérer les 3 fichiers : `aps_all.csv`, `aps_idf.csv`, `aps_sample.csv` que l'on va cette fois-ci utiliser pour seeder envinorma-web.
-
-## Mettre en ligne
-
-### Se placer dans le dossier envinorma-web
-
-```sh
-cd ../envinorma-web
-```
-
-### Commiter et mettre en production
-
-Le script précédent a ajouté 3 nouveaux CSV dans le dossier `db/seeds` d'envinorma-web.
-Il faut maintenant les ajouter au repo distant sur Heroku.
-
-```sh
-git add .
-git commit -m "MAJ des installations et classements"
-git push heroku master
-```
-
-Pour en savoir plus pour [pusher sur Heroku](https://github.com/Envinorma/envinorma-web/#d%C3%A9ployer-sur-heroku)
-
-## Mettre à jour les données en production
-
-Exécuter la commande suivante Dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku)
+Une tâche rake `lib/tasks/update_aps.rake` est exécutée quotidiennement pour mettre à jour les APs quotidiennement. Celle-ci exécute la tâche suivante, qui télécharge le fichier `aps_all.csv` de ce [bucket OVH](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc) puis met à jour les APs en base de donnée.
 
 ```ruby
-DataManager.seed_aps
+DataManager.seed_aps(from_ovh: true)
 ```
-
-Et voilà 🎉

@@ -90,7 +90,7 @@ Pour en savoir plus pour [pusher sur Heroku](https://github.com/Envinorma/envino
 
 ## Mettre à jour les données en production
 
-Exécuter la commande suivante Dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku)
+Exécuter la commande suivante dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku)
 
 ```ruby
 DataManager.seed_installations_and_associations
