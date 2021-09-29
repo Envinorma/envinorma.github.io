@@ -7,7 +7,7 @@ nav_order: 1
 # Envinorma - documentation technique
 
 Bienvenue sur la documentation technique et les archives du projet Envinorma.
-Pour en savoir plus sur le contexte du projet, veuillez [consulter la page de présentation](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2020/envinorma.html).
+Pour en savoir plus sur le contexte du projet, veuillez [consulter la page de présentation](https://eig.etalab.gouv.fr/defis/envinorma/).
 
 Le projet est disponible en open-source [sur Github](https://github.com/Envinorma/). Il comprend deux applications web : [envinorma-web](https://github.com/Envinorma/envinorma-web) et son [back-office](https://github.com/Envinorma/back-office), ainsi que plusieurs repos de traitement de données.
 
