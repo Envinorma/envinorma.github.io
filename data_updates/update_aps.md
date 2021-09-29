@@ -8,7 +8,7 @@ nav_order: 2
 
 # Mise à jour des arrêtés préfectoraux
 
-Les APs sont mis à jour quotidiennement à partir des extractions Géorisques. Un script python exécute l'OCR sur les APs et une tâche rake met à jour les APs de l'application de production.
+Les APs sont mis à jour quotidiennement à partir des extractions Géorisques. Un script python exécute l'OCR sur les APs à `7am UTC` et une tâche rake met à jour les APs de l'application de production à `9pm UTC`.
 
 ## Prérequis
 
