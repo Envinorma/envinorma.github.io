@@ -14,7 +14,7 @@ Les classements sont mis à jour à partir des extractions S3IC. Il faut éxécu
 
 _Pour exécuter les scripts, les identifiants OVH et Heroku sont nécessaires. Ils peuvent être récupérés via Resana sur demande à un responsable du projet._
 
-1. avoir les deux fichiers issus de l'extraction DGPR: `s3ic-liste-etablissements.csv` et `sic-liste-rubriques.csv` dans un dossier en local
+1. avoir les deux fichiers issus de l'extraction DGPR: `s3ic-liste-etablissements.csv` et `sic-liste-rubriques.csv` dans un dossier en local (un dump est disponible sur Resana).
 
 1. avoir le dépôt [data-tasks](https://github.com/Envinorma/data-tasks) en local
 
