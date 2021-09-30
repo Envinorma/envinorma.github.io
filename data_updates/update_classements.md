@@ -8,7 +8,7 @@ nav_order: 1
 
 # Mise à jour des installations et des classements
 
-Les classements sont mis à jour à partir des extractions S3IC. Il faut éxécuter un script pour générer des fichiers CSV bien formattés puis les mettre à jour sur Envinorma-web.
+Les classements sont mis à jour manuellement à partir des extractions S3IC. Il faut éxécuter un script pour générer des fichiers CSV bien formattés puis les mettre à jour sur Envinorma-web.
 
 ## Prérequis
 
@@ -20,6 +20,11 @@ _Pour exécuter les scripts, les identifiants OVH et Heroku sont nécessaires. I
 
    ```sh
    git clone https://github.com/Envinorma/data-tasks
+   ```
+1. avoir le dépôt [Envinorma-web](https://github.com/Envinorma/envinorma-web) en local
+
+   ```sh
+   git clone https://github.com/Envinorma/envinorma-web
    ```
 
 ## Générer les nouveaux CSV
@@ -52,21 +57,15 @@ docker run -it --rm\
 
 ## Mettre en ligne
 
-### Cloner le dépôt envinorma-web
-
-```sh
-git clone https://github.com/Envinorma/envinorma-web
-```
-
-### Télécharger les fichiers créés
-
-Depuis le [bucket OVH](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc), télécharger les fichiers `installations_all.csv` et `classements_all.csv` et les placer dans le dossier `envinorma-web/db/seeds`.
-
 ### Se placer dans le dossier envinorma-web
 
 ```sh
 cd envinorma-web
 ```
+
+### Télécharger les fichiers créés
+
+Depuis le bucket OVH, télécharger les fichiers [installations_all.csv](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc/installations_all.csv) et [classements_all.csv](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc/classements_all.csv) et les placer dans le dossier `envinorma-web/db/seeds`.
 
 ### _Commit_ et _push_
 
@@ -80,7 +79,7 @@ Pour en savoir plus pour [pusher sur Heroku](https://github.com/Envinorma/envino
 
 ## Mettre à jour les données en production
 
-Exécuter la commande suivante dans la console Rails de production (soit depuis le terminal, soit depuis l'interface d'Heroku)
+Exécuter la commande suivante dans la console Rails de production (depuis le terminal ou depuis l'interface d'Heroku)
 
 ```ruby
 DataManager.seed_installations_and_associations
