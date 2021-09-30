@@ -11,20 +11,20 @@ Il y a quatre composants principaux au projet :
 
 - L'[application principale](https://envinorma.herokuapp.com) (et son double de [pré-prod](https://envinorma-staging-1.herokuapp.com))
 - Un [back office](https://envinorma-back-office.herokuapp.com)
-- Un workflow de tâches de préparation des données, implémentées [ici](https://github.com/Envinorma/data-tasks) et exécutées avec [Prefect](https://www.prefect.io/)
-- Deux buckets de stockages d'objets, pour stocker les [AP transformés](http://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/ap/) et les [AM transformés](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/am/)
+- Un ensemble de tâches de préparation des données, implémentées [ici](https://github.com/Envinorma/data-tasks)
+- Trois buckets de stockages d'objets, pour stocker les [AP transformés](http://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/ap/), les [AM transformés](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/am/) et les [données ICPE](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc/).
 
 ## Liste des applications
 
-![image](https://user-images.githubusercontent.com/11191435/128323537-def749ce-c256-4193-bcba-91a6b8cfea65.png)
+![image](/assets/archi.png)
 
 #### Liste des tâches référencées sur le schéma ci-dessus
 
-1.  Ecriture des données ICPE (AP, installations et classements) dans la bdd Envinorma à partir de fichiers fournis par la DGPR et le BRGM _(2 minutes d’exécution, 1 fois par semaine)_
-2.  Détection des nouvelles versions d’AM publiées à partir de l’API Legifrance et du site aida.ineris.fr. Notification slack. _(10 min d’exécution, 1 fois par semaine)_
-3.  OCR des nouveaux AP à partir de la bdd Envinorma et des AP déjà uploadés dans le bucket _(3h d’exécution, 1 fois par semaine)_
-4.  Reconstruction des AM de la base de données Envinorma à partir de la base de données Back-office _(5 min d’exécution, 1 fois par semaine ou à la demande)_
-5.  Construction du fichier des AM à partir de la base de données back-office (upload dans un bucket OVH) _(5 min d'exécution, 1 fois par semaine)_
+1.  Script python, exécuté manuellement à chaque réception d'un CSV. Transforme les données ICPE (installations et classements) et écrit les fichiers installations_all.csv, classements_all.csv dans le bucket OVH `MISC`. (Exécution : environ 2 minutes.)
+2.  Script python, exécuté tous les matins à 7h (UTC) sur la machine `data-tasks` sur OVH. Récupère les métadonnées des AP, OCR les nouveaux AP et écrit le fichier aps_all.csv dans le bucket OVH `MISC`. (Exécution : environ 1h.)
+3.  Script python, intégré au back office. Exécution manuelle sur demande de l'utilisateur du back-office via un bouton. Exporte les AM au format JSON et les écrit dans le bucket OVH `AM`. (Exécution : environ 2 minutes.)
+4.  Scripts rails. Met à jour les AP, les classements et les installations de la base de donnée Envinorma. La mise à jour des AP est quotidienne et automatique (tâche Heroku scheduler quotidienne à 21h UTC). La mise à jours des installations et des classements est manuelle. (Exécution : environ 2 minutes.)
+5.  Script rails, automatique, tous les jours à 1h du matin (UTC). Supprime tous les utilisateurs qui ne se sont pas connectés depuis plus de 3 mois ainsi que les installations et les prescriptions associées. (Exécution : environ 2 minutes.)
 
 ### App envinorma
 
@@ -35,7 +35,7 @@ Il y a quatre composants principaux au projet :
   - Toutes les dépendances javascript : https://github.com/Envinorma/envinorma-web/blob/master/yarn.lock
   - RAM: 512 Mo
   - 1 CPU
-  - Espace disque: 500Mo
+  - Espace disque: 500 Mo
   - Pas d'authentification
   - https
 
@@ -52,19 +52,19 @@ Il y a quatre composants principaux au projet :
   - Liste des dépendances : [https://github.com/Envinorma/back-office/blob/main/requirements.txt](https://github.com/Envinorma/back-office/blob/main/requirements.txt)
   - RAM: 512 Mo
   - 1 CPU
-  - Espace disque: 500Mo
+  - Espace disque: 500 Mo
   - Authentification simple
   - https
 
 ### Data-tasks (tâches effectuées périodiquement pour préparer la donnée nécessaire au bon fonctionnement des applications)
 
-- Docker, Python 3.9, prefect v0.14.19 pour la gestion du workflow
+- Docker (ou Python 3.9)
 - Liste des dépendances python : https://github.com/Envinorma/data-tasks/blob/main/requirements.txt
 - Package ubuntu dépendants pour l’OCR : ghostscript, icc-profiles-free, liblept5, libxml2, pngquant, python3-pip, tesseract-ocr, tesseract-ocr-fra, zlib1g
 
 ### Stockage d’objets
 
-- Deux buckets : un pour les AM et un pour les AP.
+- Trois buckets : un pour les AM, un pour les AP et un pour les CSV
 - Capacité de l'ordre de 150Go en tout
 - Accessible via https, exemple : https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/ap/P/6/9107c345c15a46e681e2a5546dca78d6.pdf
 
@@ -73,5 +73,4 @@ Il y a quatre composants principaux au projet :
 - Sentry pour l’app envinorma
 - Google analytics pour l’app envinorma
 - Slack pour les data-tasks et le back-office
-- Prefect pour le monitoring des data-tasks
 - Heroku dashboard pour le monitoring des utilisations en RAM/CPU/Disque des deux applications et bases de données
