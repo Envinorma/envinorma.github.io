@@ -27,3 +27,7 @@ La création/modification est divisée en 4 étapes clés :
 ## Export des AMs et intégration à Envinorma
 
 La communication entre le back-office et l'application web Envinorma n'est pas automatisée. Une fois que les AMs sont prêts, il faut les exporter dans OVH depuis la page d'accueil du back-office, puis les intégrer à Envinorma. [Voir la marche à suivre](/data/am)
+
+## Source des AMs
+
+Les AMs peuvent être initialisés à partir de AIDA ou Légifrance. Selon le cas, l'une ou l'autre des sources peut être plus adaptée. Sur Légifrance, le formattage est parfois plus adapté, mais il peut manquer des annexes. AIDA est souvent plus complet mais peut être formatté de manière inadapté pour l'usage qu'on veut en faire.
