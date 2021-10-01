@@ -25,7 +25,7 @@ Aujourd'hui, on récupère des données à partir de [plusieurs sources](https:/
 ### Maintenance technique
 - Correction de bugs mineurs (envinorma et envinorma-back-office)
 - Mise à jour des dépendances (notamment celle indiquées par le dependabot sur Github - envinorma-web)
-- Mise à jour manuelle des données pour les AMs et pour les Installations. (Voir [Mise à jour des données](/data))
+- Mise à jour manuelle des données pour la nomenclature et pour les installations. (Voir [Mise à jour des données](/data))
 
 ### Rôle du porteur de projet
 - Mettre envinorma en mode maintenance en cas de bug
@@ -35,5 +35,5 @@ Aujourd'hui, on récupère des données à partir de [plusieurs sources](https:/
 - Alimenter la FAQ en fonction des retours utilisateurs ou d'une évolution de service (la partie technique est à faire par un.e développeur.se)
 
 #### Autres tâches :
-- Suivre l’avancée des projets connexes (GUN, notamment pour l’API)
+- Suivre l’avancée des projets connexes (GUN, notamment pour l’API, mise en production de la nouvelle version d'AIDA.)
 - Assurer la communication et prévoir d’éventuels développements, pilotages futurs
