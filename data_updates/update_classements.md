@@ -21,6 +21,7 @@ _Pour exécuter les scripts, les identifiants OVH et Heroku sont nécessaires. I
    ```sh
    git clone https://github.com/Envinorma/data-tasks
    ```
+
 1. avoir le dépôt [Envinorma-web](https://github.com/Envinorma/envinorma-web) en local
 
    ```sh
@@ -67,6 +68,8 @@ cd envinorma-web
 
 Depuis le bucket OVH, télécharger les fichiers [installations_all.csv](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc/installations_all.csv) et [classements_all.csv](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc/classements_all.csv) et les placer dans le dossier `envinorma-web/db/seeds`.
 
+Les opérations qui suivent vont échouer si des installations ont disparu. Pour éviter cela, il suffit de regénérer le fichier `aps_all.csv`, sur le modèle des installations. Il faut ensuite télécharger le fichier [aps_all.csv](https://storage.sbg.cloud.ovh.net/v1/AUTH_3287ea227a904f04ad4e8bceb0776108/misc/aps_all.csv) et le placer dans le même dossier.
+
 ### _Commit_ et _push_
 
 ```sh
@@ -77,12 +80,19 @@ git push heroku master
 
 Pour en savoir plus pour [pusher sur Heroku](https://github.com/Envinorma/envinorma-web/#d%C3%A9ployer-sur-heroku)
 
+## Effectuer un backup de la db de prod
+
+```sh
+heroku pg:backups:capture --app envinorma
+heroku pg:backups:download --app envinorma --output ${backup_filename}
+```
+
 ## Mettre à jour les données en production
 
 Exécuter la commande suivante dans la console Rails de production (depuis le terminal ou depuis l'interface d'Heroku)
 
 ```ruby
-DataManager.seed_installations_and_associations
+DataManager.seed_installations_and_associations(validate:true)
 ```
 
 Et voilà 🎉
